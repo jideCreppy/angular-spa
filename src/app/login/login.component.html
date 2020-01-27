@@ -1,0 +1,26 @@
+<h3>Registration</h3>
+
+<form #form="ngForm" (submit)="onSubmit(form)">
+    <div *ngIf="isSignup">
+        <p><label for="firstName">First Name:</label></p>
+        <p><input type="text" name="firstName" id="firstName" ngModel></p>
+        <p><label for="lastName">Last Name:</label></p>
+        <p><input type="text" name="lastName" id="lastName" ngModel></p>
+    </div>
+    <p><label for="email">Email:</label></p>
+    <p><input type="email" name="email" id="email" ngModel></p>
+    <p><label for="password">Password:</label></p>
+    <p><input type="password" name="password" id="password" ngModel></p>
+    <div>
+        <p><button type="submit">{{ action | uppercase }}</button></p>
+        <p *ngIf="isLogin">
+            or
+            <a href="#" (click)="action = 'signup'"> Sign Up</a>
+        </p>
+        <p *ngIf="isSignup">
+            or
+            <a href="#" (click)="action = 'login'">Login</a>
+        </p>
+    </div>
+</form>
+

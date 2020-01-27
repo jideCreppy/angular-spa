@@ -1,0 +1,44 @@
+<!-- <div *ngIf="afAuth.user | async as user">
+    <p>{{user.displayName}}</p>
+    <p>{{user.email}}</p>
+    <p>{{user.uid}}</p>
+</div> -->
+
+<div *ngIf="item | async as userProfile">
+    <h1>Profile Image</h1>
+    <div *ngIf="downloadURL | async; let srcUrl">
+        <img [src]="srcUrl" alt="profile image">
+    </div>
+    <div *ngIf="!(downloadURL | async)">
+        <img src="http://placehold.it/200/200" />
+    </div>
+    <br/>
+    <input type="file" style="display: none;" #fileInput (change)="fileChange($event)" accept=".jpg, .png" name="profileImage" />
+    <br/>
+    <progress max="100" [value]="uploadProgress | async "></progress>
+    <br/>
+    <button (click)="fileInput.click()">Upload Photo</button>
+    <!-- <p>{{ userProfile | json }}</p> -->
+    <h1>Profile Information</h1>
+    <form #form="ngForm" (submit)="onSubmit(form)">kz
+        <p><label for="name">Name:</label></p>
+        <p><input type="text" name="name" [ngModel]="userProfile.name"></p>
+        <p><label for="Email">Email:</label></p>
+        <p><input type="email" name="email" disabled [ngModel]="userProfile.email"></p>
+        <p><label for="address">Address:</label></p>
+        <p><input type="text" name="address" [ngModel]="userProfile.address"></p>
+        <p><label for="city">City:</label></p>
+        <p><input type="city" name="city" [ngModel]="userProfile.city"></p>
+        <p><label for="state">State:</label></p>
+        <p><input type="text" name="state" [ngModel]="userProfile.state"></p>
+        <p><label for="ip">IP:</label></p>
+        <p><input type="text" name="ip" [ngModel]="userProfile.ip"></p>
+        <p><label for="specialty">Specialty:</label></p>
+        <p><input type="text" name="specialty" [ngModel]="userProfile.specialty"></p>
+        <p><label for="zip">Zip:</label></p>
+        <p><input type="text" name="zip" [ngModel]="userProfile.zip"></p>
+        <p><label for="phone">Phone:</label></p>
+        <p><input type="text" name="phone" [ngModel]="userProfile.phone"></p>
+        <p><button type="submit"> Update Profile </button></p>
+    </form>
+</div>
